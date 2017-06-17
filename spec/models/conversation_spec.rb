@@ -8,7 +8,7 @@ RSpec.describe Conversation, type: :model do
   end
 
   it "should always have a sender id" do
-    expect(conversation.sender_id).not_to eqp(nil)
+    expect(conversation.sender_id).not_to eql(nil)
   end
 
   it "should be only between two different user_ids" do
