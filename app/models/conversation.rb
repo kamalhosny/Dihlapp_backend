@@ -1,6 +1,7 @@
 class Conversation < ApplicationRecord
-  belongs_to :sender, class_name: 'User'
-  belongs_to :receiver, class_name: 'User'
+  # belongs_to :sender, class_name: 'User'
+  # belongs_to :receiver, class_name: 'User'
+  has_many :users, through: :conversation_members
   has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy
   validates :sender, uniqueness: {scope: :receiver}
 
