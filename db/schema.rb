@@ -14,11 +14,11 @@ ActiveRecord::Schema.define(version: 20170617152320) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "message_id"
-    t.string   "actable_type"
-    t.integer  "actable_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["actable_type", "actable_id"], name: "index_attachments_on_actable_type_and_actable_id"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
     t.index ["message_id"], name: "index_attachments_on_message_id"
   end
 

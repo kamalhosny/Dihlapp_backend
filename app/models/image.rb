@@ -1,5 +1,7 @@
 class Image < ApplicationRecord
-  acts_as :attachment
+  ## Associations
+  acts_as :attachment, as: :attachable
 
+  ## Validations
   validates :url, presence: true
 end

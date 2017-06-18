@@ -1,4 +1,6 @@
 class Attachment < ApplicationRecord
-  actable
+  ## Associations
+  actable as: :attachable
+
   belongs_to :message, optional: true
 end

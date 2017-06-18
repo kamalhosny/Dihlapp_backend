@@ -2,7 +2,7 @@ class CreateAttachments < ActiveRecord::Migration[5.0]
   def change
     create_table :attachments do |t|
       t.belongs_to :message
-      t.actable
+      t.actable as: :attachable
 
       t.timestamps
     end

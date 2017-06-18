@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
-  acts_as :attachment
+  ## Associations
+  acts_as :attachment, as: :attachable
 
+  ## Validations
   validates :latitude,
             :longitude, presence: true
   validates :latitude, numericality: { greater_than_or_equal_to: -90,
