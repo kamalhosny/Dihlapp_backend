@@ -12,10 +12,29 @@
 
 ActiveRecord::Schema.define(version: 20170618111650) do
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "message_id"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
+    t.index ["message_id"], name: "index_attachments_on_message_id"
+  end
+
   create_table "conversations", force: :cascade do |t|
     t.integer  "last_message_id", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.decimal "latitude",  precision: 10, scale: 6, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -26,6 +45,18 @@ ActiveRecord::Schema.define(version: 20170618111650) do
     t.datetime "updated_at",      null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",                          null: false
+    t.string   "last_name",                           null: false
+    t.string   "avatar"
+    t.string   "status",          default: "offline", null: false
+    t.text     "personal_status", default: ""
+    t.string   "email",                               null: false
+    t.text     "tokens",                              null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
 end
