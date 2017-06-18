@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20170618111650) do
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "last_message_id"
+    t.integer  "last_message_id", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
