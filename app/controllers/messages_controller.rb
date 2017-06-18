@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
 	end
 
 	def create
-		@conversation ||= Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
+		@conversation ||= Conversation.create(sender_id: current_user.id)
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
 		if @message.save!
