@@ -18,4 +18,14 @@ ActiveRecord::Schema.define(version: 20170618111650) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text     "body",            null: false
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
 end
