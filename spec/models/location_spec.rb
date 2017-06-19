@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Location, type: :model do
-  it 'should act as an attachment' do
-    expect(Location).to act_as(:attachment)
-  end
-
   it 'is not valid if latitude is less than -90' do
     expect(build(:location, latitude: -100.000000)).not_to be_valid
   end
