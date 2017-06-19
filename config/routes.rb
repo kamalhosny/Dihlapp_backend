@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   # root 'conversations#index'
+
+  mount ActionCable.server => '/cable'
+
   resources :users
 
   resources :conversations, only: [:index, :show]

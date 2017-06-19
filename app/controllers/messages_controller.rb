@@ -1,18 +1,21 @@
 class MessagesController < ApplicationController
 	before_action :find_conversation!
 
-	def new
-		@message = current_user.messages.build
-	end
+
 
 	def create
 		@conversation ||= Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
-		if @message.save!
-			format.json { render json: @message }
+		if @message.save
+			ActionCable.server.broadcast(
+				"message",
+				sent_by: current_user.name,
+				body: @message
+			)
+			render json: @message
 		else
-			format.json { render json: @message.errors.full_messages, status: :bad_request }
+			render json: @message.errors.full_messages, status: :bad_request
 		end
 	end
 
