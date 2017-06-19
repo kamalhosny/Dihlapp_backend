@@ -24,9 +24,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_record-acts_as (2.4.2)
-      activerecord (>= 4.2)
-      activesupport (>= 4.2)
     activejob (5.0.3)
       activesupport (= 5.0.3)
       globalid (>= 0.3.6)
@@ -143,8 +140,6 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
-    shoulda-matchers (3.1.1)
-      activesupport (>= 4.0.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -171,7 +166,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_record-acts_as
   byebug
   factory_girl_rails (~> 4.0)
   faker
@@ -183,7 +177,6 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails (~> 3.4)
   rubocop
-  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

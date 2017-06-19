@@ -12,23 +12,17 @@
 
 ActiveRecord::Schema.define(version: 20170617152320) do
 
-  create_table "attachments", force: :cascade do |t|
-    t.integer  "message_id"
-    t.string   "attachable_type"
-    t.integer  "attachable_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id"
-    t.index ["message_id"], name: "index_attachments_on_message_id"
-  end
-
   create_table "images", force: :cascade do |t|
-    t.string "url", null: false
+    t.integer "message_id"
+    t.string  "url",        null: false
+    t.index ["message_id"], name: "index_images_on_message_id"
   end
 
   create_table "locations", force: :cascade do |t|
-    t.decimal "latitude",  precision: 10, scale: 6, null: false
-    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.integer "message_id"
+    t.decimal "latitude",   precision: 10, scale: 6, null: false
+    t.decimal "longitude",  precision: 10, scale: 6, null: false
+    t.index ["message_id"], name: "index_locations_on_message_id"
   end
 
 end
