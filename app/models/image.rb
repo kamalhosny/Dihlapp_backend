@@ -4,4 +4,6 @@ class Image < ApplicationRecord
 
   ## Validations
   validates :url, presence: true
+
+  mount_uploader :url, AvatarUploader
 end
