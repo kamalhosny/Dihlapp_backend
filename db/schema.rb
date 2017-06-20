@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20170618134356) do
     t.string   "status",          default: "offline", null: false
     t.text     "personal_status", default: ""
     t.string   "email",                               null: false
-    t.text     "tokens",                              null: false
+    t.text     "token",                              null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
