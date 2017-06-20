@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
   ## Associations
-  acts_as :attachment, as: :attachable
+  belongs_to :message, optional: true
 
   ## Validations
   validates :latitude,
