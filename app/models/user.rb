@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   has_many :conversations, through: :conversation_members
-  has_many :messsages
+  has_many :messages
 
   validates :first_name, presence: true
   validates :last_name, presence: true

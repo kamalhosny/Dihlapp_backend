@@ -6,20 +6,28 @@ class MessagesController < ApplicationController
 	end
 
 	def create
-		@conversation ||= Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
+		@conversation ||= Conversation.create(user_id: current_user.id)
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
+
 		if @message.save!
-			format.json { render json: @message }
+			render json: @message.to_json({
+				include: [
+					{ images: { except: :message_id } },
+					{ location: { except: :message_id } }
+				]
+			}), status: :ok
 		else
-			format.json { render json: @message.errors.full_messages, status: :bad_request }
+			render json: @message.errors.full_messages, status: :bad_request
 		end
 	end
 
 	private
 
 	def message_params
-		params.require(:message).permit(:body)
+		params.require(:message).permit(:body,
+																		images_attributes: [:url],
+																		location_attributes: [:latitude, :longitude])
 	end
 
 	def find_conversation!
