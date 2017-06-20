@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class UsersController < ApplicationController
   # GET /users
   def index
@@ -45,6 +44,6 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :avatar, :status, :personal_status, :email, :tokens)
+    params.require(:user).permit(:first_name, :last_name, :avatar, :status, :personal_status, :email, :token)
   end
 end
