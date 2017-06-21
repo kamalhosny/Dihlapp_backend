@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 20170618134356) do
 
   create_table "conversation_members", force: :cascade do |t|
-    t.integer  "conversation_id_id"
-    t.integer  "user_id_id"
+    t.integer  "conversation_id"
+    t.integer  "user_id"
     t.datetime "seen_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["conversation_id_id"], name: "index_conversation_members_on_conversation_id_id"
-    t.index ["user_id_id"], name: "index_conversation_members_on_user_id_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_conversation_members_on_conversation_id"
+    t.index ["user_id"], name: "index_conversation_members_on_user_id"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20170618134356) do
     t.string   "status",          default: "offline", null: false
     t.text     "personal_status", default: ""
     t.string   "email",                               null: false
-    t.text     "token",                              null: false
+    t.text     "token",                               null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
     else
       render json: @user.errors, status: :unauthorized
     end
-    byebug
   end
 
   def destroy

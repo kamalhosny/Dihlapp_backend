@@ -1,4 +1,4 @@
 class ConversationMember < ApplicationRecord
-  belongs_to :conversation, foregin_key: true
-  belongs_to :user, foregin_key: true
+  belongs_to :conversation, foreign_key: true
+  belongs_to :user, foreign_key: true
 end
