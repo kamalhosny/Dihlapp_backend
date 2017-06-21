@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 		if @message.save!
 			render json: @message.to_json({
 				include: [
-					{ images: { except: :message_id } },
+					# { images: { except: :message_id } },
 					{ location: { except: :message_id } }
 				]
 			}), status: :ok
