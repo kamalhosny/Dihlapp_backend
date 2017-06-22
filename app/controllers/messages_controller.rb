@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
 	before_action :find_conversation!
-
 	def create
 		@conversation ||= Conversation.create!(last_message_id: 1)
 <<<<<<< HEAD
@@ -18,8 +17,12 @@ class MessagesController < ApplicationController
 		end
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
-
 		if @message.save!
+			ActionCable.server.broadcast(
+				"message",
+				sent_by: current_user.name,
+				body: @message
+			)
 			render json: @message.to_json({
 				include: [
 					# { images: { except: :message_id } },
