@@ -1,12 +1,15 @@
 class MessagesController < ApplicationController
 	before_action :find_conversation!
-
 	def create
 		@conversation ||= Conversation.create(user_id: current_user.id)
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
-
 		if @message.save!
+			ActionCable.server.broadcast(
+				"message",
+				sent_by: current_user.name,
+				body: @message
+			)
 			render json: @message.to_json({
 				include: [
 					# { images: { except: :message_id } },
