@@ -9,8 +9,8 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = Conversation.find_by(id: params[:id]).messages
-    render json: @conversation
+    @messages = Conversation.find_by(id: params[:id]).messages
+    render json: @messages
   end
 
   def destroy

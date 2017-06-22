@@ -7,11 +7,18 @@ class MessagesController < ApplicationController
 
 	def create
 		@conversation ||= Conversation.create!(last_message_id: 1)
+<<<<<<< HEAD
 		@conversation_member = ConversationMember.where(conversation_id: @conversation.id, user_id:current_user.id)
 		@conversation_member ||= ConversationMember.create(conversation: @conversation, user: current_user)
 		params[:users].each do |user|
 			@conversation_member = ConversationMember.where(conversation_id: @conversation.id, user_id: user)
 			@conversation_member ||=ConversationMember.create(conversation: @conversation, user: User.find_by(id: user))
+=======
+		
+		@conversation_member = ConversationMember.create(conversation: @conversation, user: current_user)
+		params[:users].each do |user|
+			@conversation_member = ConversationMember.create(conversation: @conversation, user: user)
+>>>>>>> 6c88f9fefd20f30d06bf255f1fbdfd942e92ce2b
 		end
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
