@@ -7,9 +7,14 @@ class Conversation < ApplicationRecord
   has_many :messages, -> { order(created_at: :asc) }, dependent: :destroy
 
   #
-  scope :participating, -> (user) do
-    where("(conversations.conversation_members.user_id = ?)", user.id)
-  end
+  # scope :participating, -> (user) do
+  #   where("(conversations.conversation_members.user_id = ?)", user.id)
+  # end
+
+
+
+
+  
   #
   # scope :between, -> (sender_id, receiver_id) do
   # where(sender_id: sender_id, receiver_id: receiver_id).or(where(sender_id: receiver_id, receiver_id: sender_id)).limit(1)
