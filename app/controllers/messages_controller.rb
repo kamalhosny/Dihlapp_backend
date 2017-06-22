@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
 	before_action :find_conversation!
 
 	def index
-		render_api(messages)
+		# render_api(messages)
 		@messages = Message.all
 		render json: @messages.to_json
 	end
