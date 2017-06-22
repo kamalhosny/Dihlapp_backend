@@ -1,19 +1,21 @@
 class MessagesController < ApplicationController
 	before_action :find_conversation!
-
-
-
 	def create
-		@conversation ||= Conversation.create(sender_id: current_user.id, receiver_id: @receiver.id)
+		@conversation ||= Conversation.create(user_id: current_user.id)
 		@message = current_user.messages.build(message_params)
 		@message.conversation_id = @conversation.id
-		if @message.save
+		if @message.save!
 			ActionCable.server.broadcast(
 				"message",
 				sent_by: current_user.name,
 				body: @message
 			)
-			render json: @message
+			render json: @message.to_json({
+				include: [
+					# { images: { except: :message_id } },
+					{ location: { except: :message_id } }
+				]
+			}), status: :ok
 		else
 			render json: @message.errors.full_messages, status: :bad_request
 		end
@@ -22,7 +24,9 @@ class MessagesController < ApplicationController
 	private
 
 	def message_params
-		params.require(:message).permit(:body)
+		params.require(:message).permit(:body,
+																		images_attributes: [:url],
+																		location_attributes: [:latitude, :longitude])
 	end
 
 	def find_conversation!
