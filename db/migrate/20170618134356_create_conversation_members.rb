@@ -4,7 +4,6 @@ class CreateConversationMembers < ActiveRecord::Migration[5.0]
       t.references :conversation, foreign_key: true
       t.references :user
       t.timestamp :seen_at
-
       t.timestamps
     end
   end

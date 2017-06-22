@@ -29,11 +29,12 @@ module Dihlapp
 
     config.active_record.belongs_to_required_by_default = true
 
-    config.middleware.insert_before 0, "Rack::Cors" do
-   allow do
-       origins '*' #-> has to be "*" or specific
-       resource '*', headers: :any, methods: [:get, :post, :options]
-   end
-end
+    # Use rack cors to allow http requests from another domain
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
   end
 end

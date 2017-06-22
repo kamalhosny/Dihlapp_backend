@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   # before_action :check_participating!, except: [:index]
 
   def index
-    @conversations = Conversation.all
+    @conversation=Conversation.all
     # @conversations = Conversation.participating(current_user).order('updated_at DESC')
     render json: @conversations
   end

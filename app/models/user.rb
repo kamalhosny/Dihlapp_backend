@@ -12,13 +12,13 @@ class User < ApplicationRecord
   validates :token, presence: true, uniqueness: true
 
   def self.authenticate(email,token)
-   user = find_by(email: email)
-   if user && user.token == token
-     user
-   else
-     nil
-   end
- end
+    user = find_by(email: email)
+    if user && user.token == token
+      user
+    else
+      nil
+    end
+  end
 
   # def encrypt_token
   #   if token.present?
