@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 		if @message.save!
 			ActionCable.server.broadcast(
 				"message",
-				sent_by: current_user.name,
+				sent_by: current_user.first_name,
 				body: @message
 			)
 			render json: @message.to_json({
