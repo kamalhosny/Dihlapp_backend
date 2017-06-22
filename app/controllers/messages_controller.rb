@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 
 	def create
 		@conversation ||= Conversation.create!(last_message_id: 1)
-		byebug
+		
 		@conversation_member = ConversationMember.create(conversation: @conversation, user: current_user)
 		params[:users].each do |user|
 			@conversation_member = ConversationMember.create(conversation: @conversation, user: user)
