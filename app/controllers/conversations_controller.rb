@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.participating(current_user).order('updated_at DESC')
-    render json: @conversations.to_json
+    render json: @conversations
   end
 
   def show
