@@ -1,17 +1,35 @@
 class SessionsController < ApplicationController
+  
   def create
-    if  user = User.find_by(email: session_params[:email])
-      @user = User.authenticate(session_params[:email],session_params[:token])
+
+    if user = User.find_by(email: session_params[:email])
+      user.update(token: session_params[:token])
+      user.save!
+
+      render json: user
     else
-      @user = User.create!(session_params)
+      raise ActiveRecord::RecordNotFound
     end
-    if @user
-      session[:user_id] = @user.id
-      render json: @user
+
+    if user
+      session[:user_id] = user.id
     else
-      render json: @user.errors, status: :unauthorized
+      render json: { status: :unauthorized }
     end
-    byebug
+
+    # if user = User.find_by(email: session_params[:email])
+    #   @user = User.authenticate(session_params[:email],session_params[:token])
+    # else
+    #   @user = User.create!(session_params)
+    # end
+
+    # if @user
+    #   session[:user_id] = @user.id
+    #   render json: @user
+    # else
+    #   render status: :unauthorized
+    # end
+    # byebug
   end
 
   def destroy
