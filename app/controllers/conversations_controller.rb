@@ -1,15 +1,17 @@
 class ConversationsController < ApplicationController
 
-  before_action :set_conversation, except: [:index]
-  before_action :check_participating!, except: [:index]
+  # before_action :set_conversation, except: [:index]
+  # before_action :check_participating!, except: [:index]
 
   def index
-    @conversations = Conversation.participating(current_user).order('updated_at DESC')
-    render json: @conversations.to_json
+    @conversations = Conversation.all
+    # @conversations = Conversation.participating(current_user).order('updated_at DESC')
+    render json: @conversations
   end
 
   def show
-    @conversation = Conversation.find_by(id: params[:conversation_id])
+    @messages = Conversation.find_by(id: params[:id]).messages
+    render json: @messages
   end
 
   def destroy

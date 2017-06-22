@@ -8,9 +8,15 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
+  config.action_cable.url = "wss://localhost:3000/cable/"
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
 
   # Show full error reports.
   config.consider_all_requests_local = true
+config.web_socket_server_url = "wss://localhost:3000/cable/"
+
+Rails.application.config.action_cable.allowed_request_origins = [/http:\/\/*/,
+/https:\/\/*/]
 
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
