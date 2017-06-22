@@ -1,10 +1,6 @@
 class MessagesController < ApplicationController
 	before_action :find_conversation!
 
-	def new
-		@message = current_user.messages.build
-	end
-
 	def create
 		@conversation ||= Conversation.create!(last_message_id: 1)
 <<<<<<< HEAD
@@ -26,7 +22,7 @@ class MessagesController < ApplicationController
 		if @message.save!
 			render json: @message.to_json({
 				include: [
-					{ images: { except: :message_id } },
+					# { images: { except: :message_id } },
 					{ location: { except: :message_id } }
 				]
 			}), status: :ok
