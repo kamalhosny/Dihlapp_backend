@@ -15,3 +15,5 @@ class AppearanceChannel < ApplicationCable::Channel
 		current_user.away
 	end
 end
+
+# The Above channel is not implemented properly yet as we integrated the action cable of the messages only
